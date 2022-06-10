@@ -1,0 +1,14 @@
+schema {
+    query: Query
+}
+
+type Query{
+    getNewsItems: [NewsItemsEntity]
+}
+
+type NewsItemsEntity{
+    title:String
+    description:String
+    pubDate:String
+    imgUrl:String
+}

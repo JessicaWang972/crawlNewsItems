@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csdigitalmedia.recruitment.newsrecord.dao.NewsItemsMapper">
+    <resultMap id="NewsItems" type="com.csdigitalmedia.recruitment.newsrecord.entity.NewsItemsEntity">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="description" property="description"/>
+        <result column="pub_date" property="pubDate"/>
+        <result column="img_url" property="imgUrl"/>
+    </resultMap>
+    
+    <insert id="addNewsItems" parameterType="java.util.List">
+        insert into news_record(title,description,pub_date,img_url) values
+        <foreach collection="list" separator="," item="item">
+            (#{item.title},#{item.description},#{item.pubDate},#{item.imgUrl})
+        </foreach>
+    </insert>
+
+    <delete id="deleteNewsItems">
+        delete from news_record
+    </delete>
+
+    <select id="getNewsItems" resultMap="NewsItems">
+        select id, title, description, pub_date, img_url
+        from news_record
+    </select>
+
+</mapper>
